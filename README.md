@@ -130,4 +130,4 @@ Las condiciones devuelven `1` (verdadero) o `0` (falso).
 
 1. Clonar o descargar el repositorio:
    ```bash
-   git clone https://github.com/<tu-usuario>/GeoStack-LenguajeDeFiguras.git
+   https://github.com/RaquelBascones/ShapeLang/tree/main
