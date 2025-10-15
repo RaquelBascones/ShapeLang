@@ -16,6 +16,7 @@ The project combines art and programming: the figures are interpreted using a st
 3. [Control Structures](#control-structures)
 4. [Repository Files](#repository-files)
 5. [Local Execution](#local-execution)
+6. [Academic Context](#academic-context)
 
 
 
@@ -141,6 +142,26 @@ Conditions return `1` (true) or `0` (false).
 ## Local Execution
 
 1. Clone or download the repository:
-   ```bash
-   git clone https://github.com/<your-username>/Shapelang.git
+   ```bash
+   git clone https://github.com/<your-username>/GeoStack-LenguajeDeFiguras.git
+   ```
+2. Open the file `index.html` in a browser.  
+3. Use the buttons to place figures, build expressions, and execute step-by-step.  
+4. Observe the stack history and the operation log.
+
+---
+
+## Academic Context
+
+Project developed for the **Languages and Programming Paradigms** course.  
+It combines RPN, stack, and a visual language based on geometric figures.  
+The objective is to physically and visually demonstrate how an interpreted language behaves.
+
+---
+
+
+
+
+
+   
 
