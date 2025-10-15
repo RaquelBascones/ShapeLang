@@ -1,133 +1,146 @@
-# Shapelang – Lenguaje de Figuras
+# Shapelang – Visual Language Based on Geometric Figures
 
-Shapelang es un lenguaje visual no convencional basado en figuras geométricas que representan operaciones, números y estructuras de control.  
-El proyecto combina arte y programación: las figuras se interpretan siguiendo un sistema de pila (stack) y se traducen a notación polaca inversa (RPN), que después se ejecuta de forma animada mediante una máquina virtual.
-
----
-
-## Objetivo del proyecto
-
-- Crear un lenguaje interpretado físico, donde las figuras geométricas actúan como tokens.  
-- Desarrollar una máquina virtual con pila que procese operaciones, bucles y condiciones.  
-- Mostrar la ejecución paso a paso (historial de pila y registro de operaciones).  
-- Integrar el concepto de RPN (Reverse Polish Notation) para eliminar la necesidad de paréntesis.  
-- Servir como herramienta educativa para enseñar lógica y programación de manera visual.
+Shapelang is an unconventional visual programming language based on geometric figures that represent operations, numbers, and control structures.  
+The project combines art and programming: the figures are interpreted using a stack-based system and translated into Reverse Polish Notation (RPN), which is then executed step by step through a visual virtual machine.
 
 ---
 
-## Estructura del lenguaje (según la app)
+## Table of Contents
+1. [Project Objectives](#project-objectives)
+2. [Language Structure](#language-structure-as-implemented-in-the-app)
+   - [Digits (0–9)](#digits-09)
+   - [Arithmetic Operators](#arithmetic-operators)
+   - [Comparisons](#comparisons)
+   - [Control and Logic Structures](#control-and-logic-structures)
+   - [Operational Summary](#operational-summary)
+3. [Control Structures](#control-structures)
+4. [Repository Files](#repository-files)
+5. [Local Execution](#local-execution)
 
-### Dígitos (0–9)
 
-Se representan como **figuras moradas** y se apilan directamente en la pila.
 
-| Dígito | Figura en la interfaz |
-|--------|------------------------|
-| 0 | Círculo vacío (trazo morado) |
-| 1 | Círculo con trazo morado más grueso |
-| 2 | Barra horizontal morada |
-| 3 | Triángulo morado |
-| 4 | Rombo morado |
-| 5 | Pentágono morado |
-| 6 | Hexágono morado |
-| 7 | Heptágono morado |
-| 8 | Octágono morado |
-| 9 | Eneágono morado |
+## Project Objectives
 
-> El color morado indica que son **valores numéricos**.
-
----
-
-### Operadores aritméticos
-
-Botones blancos con borde negro. Cada operador consume dos valores de la pila y apila el resultado.
-
-| Operador | Botón | Descripción |
-|-----------|--------|--------------|
-| `+` | círculo con “+” | Suma |
-| `-` | cuadrado con “−” | Resta |
-| `*` | triángulo con “*” | Multiplicación |
-| `/` | cuadrado con “/” | División (redondeo con `Math.round`) |
-| `//` | rectángulo con “∥” | División entera (también redondeo) |
-| `%` | pentágono con “%” | Módulo |
-| `**` | hexágono con “^” | Potencia |
+- Create a physical interpreted language where geometric figures act as tokens.  
+- Develop a stack-based virtual machine capable of processing operations, loops, and conditions.  
+- Display step-by-step execution (stack history and operation log).  
+- Integrate the RPN (Reverse Polish Notation) concept to eliminate the need for parentheses.  
+- Serve as an educational tool to teach logic and programming in a more visual and intuitive way.
 
 ---
 
-### Comparaciones
+## Language Structure (as implemented in the app)
 
-También son botones blancos con borde negro. Devuelven `1` (verdadero) o `0` (falso).
+### Digits (0–9)
 
-| Operador | Descripción |
-|-----------|--------------|
-| `>` | Mayor que |
-| `<` | Menor que |
-| `==` | Igualdad |
-| `!=` | Distinto |
+Digits are represented as **purple figures** and are directly pushed onto the stack.
 
----
+| Digit | Figure in the interface |
+|--------|--------------------------|
+| 0 | Empty circle (purple outline) |
+| 1 | Circle with thicker purple outline |
+| 2 | Horizontal purple bar |
+| 3 | Purple triangle |
+| 4 | Purple diamond |
+| 5 | Purple pentagon |
+| 6 | Purple hexagon |
+| 7 | Purple heptagon |
+| 8 | Purple octagon |
+| 9 | Purple enneagon |
 
-### Estructuras y control
-
-| Token | Apariencia | Comportamiento |
-|--------|-------------|----------------|
-| `IF`, `ELIF`, `ELSE`, `DO`, `END` | Botones rectangulares blancos | Se **expanden antes** de ejecutar: se evalúa la condición y se inserta solo el bloque correcto. |
-| `FOR` | Botón rectangular blanco | Repite el bloque N veces y añade un `POP` al final de cada vuelta (pop pospuesto). |
-| `PRINT` | Hexágono morado | Muestra el tope de la pila **sin quitarlo** (post-operación). |
-| `(`, `)` | Paréntesis negros | Solo afectan al orden (no modifican la pila). |
-
----
-
-### Resumen operativo
-
-- **Números:** `push n`  
-- **Operadores:** consumen dos valores, apilan el resultado  
-- **Comparaciones:** consumen dos valores, apilan `0` o `1`  
-- **PRINT:** muestra el tope, no hace `pop`  
-- **FOR:** expansión + `POP` final por iteración  
-- **IF / ELIF / ELSE:** expansión del bloque válido  
-- **Paréntesis:** afectan al orden, no a la pila
+> The purple color indicates **numeric values**.
 
 ---
 
-## Funcionamiento general
+### Arithmetic Operators
 
-1. **Interpretación humana:** las figuras se traducen a símbolos numéricos o lógicos.  
-2. **Conversión a RPN:** se genera la notación polaca inversa mediante un algoritmo tipo *shunting-yard*.  
-3. **Expansión:** se resuelven los bloques (`IF`, `FOR`, `ELSE`, etc.) antes de ejecutar.  
-4. **Ejecución animada:** la pila se actualiza paso a paso, mostrando los resultados y el historial visual.
+White buttons with black borders. Each operator consumes two values from the stack and pushes the resulting value.
 
+| Operator | Button | Description |
+|-----------|--------|-------------|
+| `+` | Circle with “+” | Addition |
+| `-` | Square with “−” | Subtraction |
+| `*` | Triangle with “*” | Multiplication |
+| `/` | Square with “/” | Division (rounded using `Math.round`) |
+| `//` | Rectangle with “∥” | Integer division (also rounded) |
+| `%` | Pentagon with “%” | Modulo |
+| `**` | Hexagon with “^” | Power |
 
 ---
 
-## Estructuras de control
+### Comparisons
+
+Also represented by white buttons with black borders. These operators return `1` (true) or `0` (false).
+
+| Operator | Description |
+|-----------|-------------|
+| `>` | Greater than |
+| `<` | Less than |
+| `==` | Equal to |
+| `!=` | Not equal to |
+
+---
+
+### Control and Logic Structures
+
+| Token | Appearance | Behavior |
+|--------|-------------|-----------|
+| `IF`, `ELIF`, `ELSE`, `DO`, `END` | White rectangular buttons | **Expanded before execution**: the condition is evaluated and only the correct block is inserted. |
+| `FOR` | White rectangular button | Repeats the block N times and adds a `POP` at the end of each iteration (deferred pop). |
+| `PRINT` | Purple hexagon | Displays the top of the stack **without removing it** (post-operation). |
+| `(`, `)` | Black parentheses | Affect only operation order (do not modify the stack). |
+
+---
+
+### Operational Summary
+
+- **Numbers:** `push n`  
+- **Operators:** consume two values, push the result  
+- **Comparisons:** consume two values, push `0` or `1`  
+- **PRINT:** displays the top value, does not pop it  
+- **FOR:** expansion + final `POP` per iteration  
+- **IF / ELIF / ELSE:** expands only the valid block  
+- **Parentheses:** affect order but not stack contents
+
+---
+
+## General Operation
+
+1. **Human interpretation:** figures are translated into numeric or logical symbols.  
+2. **RPN conversion:** expressions are transformed into Reverse Polish Notation using a *shunting-yard* algorithm.  
+3. **Expansion:** control blocks (`IF`, `FOR`, `ELSE`, etc.) are expanded before execution.  
+4. **Animated execution:** the stack updates step by step, displaying the results and the visual execution history.
+
+---
+
+## Control Structures
 
 ### FOR n DO … END
 
-Repite un bloque n veces.  
-Después de cada vuelta se ejecuta un `POP` automático para limpiar la pila.
+Repeats a block `n` times.  
+After each iteration, an automatic `POP` is executed to clean the stack.
 
 ### IF / ELIF / ELSE
 
-Evalúa una condición y expande solo el bloque verdadero antes de la ejecución.  
-Las condiciones devuelven `1` (verdadero) o `0` (falso).
+Evaluates a condition and expands only the true block before execution.  
+Conditions return `1` (true) or `0` (false).
 
 ---
 
+## Repository Files
 
-## Archivos del repositorio
-
-| Archivo | Descripción |
+| File | Description |
 |----------|-------------|
-| `VM_correcto.html` | Aplicación web del lenguaje: interfaz visual con figuras, parser RPN y ejecución animada. |
-| `MV2.0.py` | Versión en Python de la Máquina Virtual basada en pila (procesa instrucciones del lenguaje). |
-| `proyecto 1- figuras geométricas 2.pdf` | Documento con la explicación completa del lenguaje y la presentación del proyecto. |
-| `README.md` | Documento informativo del repositorio con estructura, objetivos y guía de ejecución. |
+| `VM_correcto.html` | Web application of the language: visual interface with figures, RPN parser, and animated execution. |
+| `MV2.0.py` | Python version of the stack-based Virtual Machine that processes the language’s instructions. |
+| `proyecto 1- figuras geométricas 2.pdf` | Project documentation explaining the language and its presentation. |
+| `README.md` | Informational document detailing the structure, goals, and usage guide for the project. |
 
 ---
 
-## Ejecución local
+## Local Execution
 
-1. Clonar o descargar el repositorio:
+1. Clone or download the repository:
    ```bash
-   https://github.com/RaquelBascones/ShapeLang/tree/main
+   git clone https://github.com/<your-username>/Shapelang.git
+
