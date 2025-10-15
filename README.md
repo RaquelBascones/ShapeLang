@@ -113,3 +113,21 @@ Evalúa una condición y expande solo el bloque verdadero antes de la ejecución
 Las condiciones devuelven `1` (verdadero) o `0` (falso).
 
 ---
+
+
+## Archivos del repositorio
+
+| Archivo | Descripción |
+|----------|-------------|
+| `VM_correcto.html` | Aplicación web del lenguaje: interfaz visual con figuras, parser RPN y ejecución animada. |
+| `MV2.0.py` | Versión en Python de la Máquina Virtual basada en pila (procesa instrucciones del lenguaje). |
+| `proyecto 1- figuras geométricas 2.pdf` | Documento con la explicación completa del lenguaje y la presentación del proyecto. |
+| `README.md` | Documento informativo del repositorio con estructura, objetivos y guía de ejecución. |
+
+---
+
+## Ejecución local
+
+1. Clonar o descargar el repositorio:
+   ```bash
+   git clone https://github.com/<tu-usuario>/GeoStack-LenguajeDeFiguras.git
